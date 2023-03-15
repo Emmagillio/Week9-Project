@@ -7,7 +7,7 @@ Car management system
 -Back End
     - FastApi
     - Python
-    -Uvicorn
+    - Uvicorn
     - SQLite / MySQL
 
 - Front End
@@ -26,8 +26,8 @@ Add Cars to the system:
     -Licence plate
     - Dealer Location
     - Person bought from, name, phone, email
-    - Purchace price
-    - Selling price - automatically calculated as purchace price +50%
+    - Purchase price
+    - Selling price - automatically calculated as purchase price +50%
 
 Get car details
     - find one car
