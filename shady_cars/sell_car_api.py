@@ -51,4 +51,8 @@ def sell_car(sell: Sell):
 
 
 def validate_data(sell: Sell):
-    valid = [sell.licence_number != "", sell.sold_date != "", sell.sold_price]
+    valid = [
+        sell.licence_number != "",
+        sell.sold_date != "",
+        type(sell.sold_price) == int,
+    ]
