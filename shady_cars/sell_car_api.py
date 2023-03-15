@@ -35,15 +35,17 @@ def sell_car(sell: Sell):
     cur = con.cursor()
 
     # Create query to SQL database
-    query = f"update cars set sold_date = {sell.sold_date}, sold_price = {sell.sold_price}, purchaser_fname = {sell.purchaser_fname}, \
-            purchaser_lname = {sell.purchaser_lname}, purchaser_phone = {sell.purchaser_phone}, purchaser_email = {sell.purchaser_email} \
-            where licence_number = {sell.licence_number}"
+    query = f"update cars set sold_date = '{sell.sold_date}', sold_price = {sell.sold_price}, purchaser_fname = '{sell.purchaser_fname}', \
+            purchaser_lname = '{sell.purchaser_lname}', purchaser_phone = '{sell.purchaser_phone}', purchaser_email = '{sell.purchaser_email}' \
+            where licence_number = '{sell.licence_number}'"
 
     # Execute query
     cur.execute(query)
 
     # Commit changes
     con.commit()
+
+    query = f"select id, licence_number, sold_date, sold_price, "
 
     # Close connection
     cur.close()

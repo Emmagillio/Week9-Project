@@ -32,7 +32,7 @@ def search(
     # Check for search query, create query to SQL database
     query = f"select id, make, model, colour, year, location, licence_number, for_sale_price, image_url from \
             cars where licence_number like '%{licence_number}%' and make like '%{make}%' and colour like '%{colour}%' \
-            and for_sale_price > {lower_price} and for_sale_price < {upper_price} order by for_sale_price"
+            and for_sale_price > {lower_price} and for_sale_price < {upper_price} order by for_sale_price DESC"
 
     # Execute query and fetch results
     cur.execute(query)

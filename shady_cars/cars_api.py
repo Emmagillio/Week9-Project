@@ -155,9 +155,9 @@ def sell_car(sell: Sell):
     cur = con.cursor()
 
     # Create query to SQL database
-    query = f"update cars set sold_date = {sell.sold_date}, sold_price = {sell.sold_price}, purchaser_fname = {sell.purchaser_fname}, \
-            purchaser_lname = {sell.purchaser_lname}, purchaser_phone = {sell.purchaser_phone}, purchaser_email = {sell.purchaser_email} \
-            where licence_number = {sell.licence_number}"
+    query = f"update cars set sold_date = '{sell.sold_date}', sold_price = {sell.sold_price}, purchaser_fname = '{sell.purchaser_fname}', \
+            purchaser_lname = '{sell.purchaser_lname}', purchaser_phone = '{sell.purchaser_phone}', purchaser_email = '{sell.purchaser_email}' \
+            where licence_number = '{sell.licence_number}'"
 
     # Execute query
     cur.execute(query)
@@ -168,3 +168,41 @@ def sell_car(sell: Sell):
     # Close connection
     cur.close()
     con.close()
+
+
+@app.get("/analytics")
+def search_sold():
+    # Connect to database
+    con = pymysql.connect(
+        host="localhost", user="root", password="password", database="dealer"
+    )
+    cur = con.cursor()
+
+    query = f"select id, licence_number, bought_price, for_sale_price, sold_price, sold_date from cars where sold_date IS NOT NULL"
+
+    cur.execute(query)
+
+    res = cur.fetchall()
+
+    # Close database connections
+    cur.close()
+    con.close()
+
+    sold = {}
+
+    for car in res:
+        car_result = {
+            car[0]: {
+                "Licence Number": car[1],
+                "Bought Price": car[2],
+                "Sale Price": car[3],
+                "Sold Price": car[4],
+                "Sold Date": car[5],
+            }
+        }
+        sold.update(car_result)
+
+    if sold:
+        return sold
+    else:
+        return "No results found"
