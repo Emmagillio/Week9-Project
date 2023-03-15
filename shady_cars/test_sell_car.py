@@ -82,11 +82,11 @@ sell8 = Sell(
 
 
 def test_validate_sell_data():
-    assert validate_sell_data(sell1) == True
-    assert validate_sell_data(sell2) == False
-    assert validate_sell_data(sell3) == False
-    assert validate_sell_data(sell4) == False
-    assert validate_sell_data(sell5) == False
-    assert validate_sell_data(sell6) == False
-    assert validate_sell_data(sell7) == False
-    assert validate_sell_data(sell8) == False
+    assert validate_sell_data(sell1)
+    assert not validate_sell_data(sell2)
+    assert not validate_sell_data(sell3)
+    assert not validate_sell_data(sell4)
+    assert not validate_sell_data(sell5)
+    assert not validate_sell_data(sell6)
+    assert not validate_sell_data(sell7)
+    assert not validate_sell_data(sell8)

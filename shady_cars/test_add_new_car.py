@@ -101,5 +101,5 @@ def test_sql_insert_statement():
         for_sale_price, seller_fname, seller_lname, seller_phone, seller_email, image_url) 
         values('VW', 'golf', 'black', '2001', 'AB61 CDE', 
         'London', '2022-07-24 00:41:47', 18386, 18386, 'Elston',
-        '', '{car.seller_phone}', '{car.seller_email}', '{car.image_url}')"""
+        'Backshell', '453-275-4832', 'ebackshell0@arizona.edu', 'http://dummyimage.com/200x200.png/cc0000/ffffff')"""
     )

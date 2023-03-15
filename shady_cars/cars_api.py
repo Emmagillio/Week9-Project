@@ -59,18 +59,18 @@ def api_add_car(car: Car):
     )
     cur = con.cursor()
 
-    sql = f"""insert into dealer(
-        make, model, colour, year, licence_number, location, bought_date, bought_price, 
-        for_sale_price, seller_fname, seller_lname, seller_phone, seller_email, image_url) 
-        values('{car.make}', '{car.model}', '{car.colour}', '{car.year}', '{car.licence_number}', 
-        '{car.location}', '{car.bought_date}', {car.bought_price}, {forsale_price}, '{car.seller_fname}',
-        '{car.seller_lname}', '{car.seller_phone}', '{car.seller_email}', '{car.image_url}')"""
+    sql = f"insert into cars(\
+        make, model, colour, year, licence_number, location, bought_date, bought_price, \
+        for_sale_price, seller_fname, seller_lname, seller_phone, seller_email, image_url) \
+        values('{car.make}', '{car.model}', '{car.colour}', '{car.year}', '{car.licence_number}', \
+        '{car.location}', '{car.bought_date}', {car.bought_price}, {forsale_price}, '{car.seller_fname}',\
+        '{car.seller_lname}', '{car.seller_phone}', '{car.seller_email}', '{car.image_url}')"
 
     try:
         cur.execute(sql)
         con.commit()  #
     except:
-        return {"message": "could not insert new data"}
+        return {"message": "could not insert new data", "sql statement": sql}
 
     search = f"select id, make, model, colour, year, location, licence_number, for_sale_price, image_url from cars where licence_number like '%{car.licence_number}%'"
     cur.execute(search)
@@ -110,7 +110,7 @@ def search(
     # Check for search query, create query to SQL database
     query = f"select id, make, model, colour, year, location, licence_number, for_sale_price, image_url from \
             cars where licence_number like '%{licence_number}%' and make like '%{make}%' and colour like '%{colour}%' \
-            and for_sale_price > {lower_price} and for_sale_price < {upper_price} order by for_sale_price"
+            and for_sale_price > {lower_price} and for_sale_price < {upper_price} order by for_sale_price DESC"
 
     # Execute query and fetch results
     cur.execute(query)
