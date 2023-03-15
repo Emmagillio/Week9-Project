@@ -54,12 +54,31 @@ def api_add_car(car: Car):
         '{car.location}', '{car.bought_date}', {car.bought_price}, {for_sale_price}, '{car.seller_fname}',
         '{car.seller_lname}', '{car.seller_phone}', '{car.seller_email}', '{car.image_url}')"""
 
-    res = cur.execute(sql)
-    con.commit()
+    try:
+        cur.execute(sql)
+        con.commit()  #
+    except:
+        return {"message": "could not insert new data"}
+
+    search = f"select id, make, model, colour, year, location, licence_number, for_sale_price, image_url from cars where licence_number like '%{car.licence_number}%'"
+    cur.execute(search)
+    res = cur.fetchone()
 
     # close the connection
     cur.close()
     con.close()
+
+    new_car = {
+        "Make": res[1],
+        "Model": res[2],
+        "Colour": res[3],
+        "Year": res[4],
+        "Location": res[5],
+        "Licence Number": res[6],
+        "Sale Price": res[7],
+        "Image": res[8],
+    }
+    return new_car
 
 
 def for_sale_price(bought_price):
