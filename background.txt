@@ -1,0 +1,74 @@
+Car management system
+
+- system to allow management of car sales
+- modern web technologies
+- proof of concept
+
+-Back End
+    - FastApi
+    - Python
+    -Uvicorn
+    - SQLite / MySQL
+
+- Front End
+    - JS, CSS, HTML
+    - OK on mobile and desktop screens
+
+- Implementation down to developer team
+
+- Code should be commented
+- Placed under source control
+- Deployed onto a cloud server
+
+
+Add Cars to the system:
+    -Make, model, colour, year
+    -Licence plate
+    - Dealer Location
+    - Person bought from, name, phone, email
+    - Purchace price
+    - Selling price - automatically calculated as purchace price +50%
+
+Get car details
+    - find one car
+        - search by licence plate
+        - show full details of the car
+
+    - List all Cars
+        - overview of licence plate, make, model
+        - most expensive cars first
+
+
+Sell car
+    - when a car is sold the details should be updated
+        - Actual selling price
+        - Name of Purchaser
+    - Car should be marked as sold but remain in the database for analysis 
+
+
+
+-------------------------------------
+
+Stretch goals
+
+    - Advanced searching
+        - user should be able to find cars within a price range, all cars of a certain make or colour
+    - Pictures
+        - System should be able to store a picture of the car and should display it along with the car details
+    - "Kiosk" website
+        - advertising terminals within delership that will continuously show a slideshow of vehicles that are for sale including the picture and price of vehicles
+    - Sales analysis
+        - List all cars that have been sold with their purchace price, list price and actual selling price
+    -
+
+
+-------------------------------------
+
+Super stretch goals
+    - Sales graphs
+        - System should display sales per month for the past year in graphical from
+    - Export data
+        - System should allow car data to be exported in CSV format to allow interchange with other systems
+    - Printout (PDFs)
+        - If a customer is interested in a partcular car, the system should produce a one-page documnet with a picture and car details
+    - Payment using Bitcoin
