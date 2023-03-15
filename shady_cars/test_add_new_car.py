@@ -1,4 +1,4 @@
-from helpers import validate_add_car_data, Car
+from helpers import validate_add_car_data, Car, for_sale_price
 
 
 car1 = Car(
@@ -84,3 +84,22 @@ def test_validate_data():
     assert validate_add_car_data(car3) == False
     assert validate_add_car_data(car4) == False
     assert validate_add_car_data(car4) == False
+
+
+def test_sql_insert_statement():
+    car = car1
+    forsale_price = for_sale_price(car.bought_price)
+    assert (
+        f"""insert into dealer(
+        make, model, colour, year, licence_number, location, bought_date, bought_price, 
+        for_sale_price, seller_fname, seller_lname, seller_phone, seller_email, image_url) 
+        values('{car.make}', '{car.model}', '{car.colour}', '{car.year}', '{car.licence_number}', 
+        '{car.location}', '{car.bought_date}', {car.bought_price}, {forsale_price}, '{car.seller_fname}',
+        '{car.seller_lname}', '{car.seller_phone}', '{car.seller_email}', '{car.image_url}')"""
+        == """insert into dealer(
+        make, model, colour, year, licence_number, location, bought_date, bought_price, 
+        for_sale_price, seller_fname, seller_lname, seller_phone, seller_email, image_url) 
+        values('VW', 'golf', 'black', '2001', 'AB61 CDE', 
+        'London', '2022-07-24 00:41:47', 18386, 18386, 'Elston',
+        '', '{car.seller_phone}', '{car.seller_email}', '{car.image_url}')"""
+    )

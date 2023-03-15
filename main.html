@@ -11,40 +11,41 @@
 
 <body>
     <h1>Car Site</h1>
-    <div id="car_form">
-        <form method="get" action="">
-            <label for="make">license plate:</label>
-            <input type="text" id="year" name="model"><br><br>
+    <form method="get" action="">
+        <label for="licensePlate">license plate:</label>
+        <input type="text" id="year" name="make"><br><br>
 
-            <label for="make">make:</label>
-            <input type="text" id="make" name="model"><br><br>
+        <label for="make">make:</label>
+        <input type="text" id="make" name="make"><br><br>
 
-            <label for="model">model:</label>
-            <input type="text" id="model" name="model"><br><br>
+        <label for="model">model:</label>
+        <input type="text" id="model" name="model"><br><br>
 
-            <label for="colour">colour:</label>
-            <input type="text" id="colour" name="model"><br><br>
+        <label for="colour">colour:</label>
+        <input type="text" id="colour" name="colour"><br><br>
 
-            <label for="price_range">Price range</label><br><br>
-            <input type="text" id="price_range" name="model">
+        <label for="priceRange">Price range</label><br><br>
+        <input type="text" id="priceRange" name="priceRange">
 
 
-            <button type="submit">Search</button>
-        </form>
-    </div>
+        <button type="submit">Search</button>
+    </form>
+    <div id="results"></div>
     <script>
         const form = document.querySelector('form');
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
-            const license = document.getElementbyId('#license').value;
-            const make = document.getElementbyId('#make').value;
-            const model = document.querySelector('#model').value;
-            const colour = document.querySelector('#colour').value;
-            const priceRange = document.querySelector('#priceRange').value;
+            const licensePlate = document.getElementbyId('licensePlate').value;
+            const make = document.getElementbyId('make').value;
+            const model = document.getElementbyId('model').value;
+            const colour = document.getElementbyId('colour').value;
+            const priceRange = document.getElementbyId('priceRange').value;
 
-            const url = ''
+            const licensePlateurl = ''
 
-            const response = await fetch()
+            const licensePlateresponse = await fetch(licensePlateurl);
+            const licensePlateData = await licensePlateresponse
+
             try {
                 const response = await fetch(url);
                 const data = await response.json();
@@ -52,7 +53,9 @@
                 console.log(error)
             }
 
-        })
+            console.log()
+
+        });
     </script>
 </body>
 
