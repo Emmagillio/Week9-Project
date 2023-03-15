@@ -48,11 +48,3 @@ def sell_car(sell: Sell):
     # Close connection
     cur.close()
     con.close()
-
-
-def validate_data(sell: Sell):
-    valid = [
-        sell.licence_number != "",
-        sell.sold_date != "",
-        type(sell.sold_price) == int,
-    ]

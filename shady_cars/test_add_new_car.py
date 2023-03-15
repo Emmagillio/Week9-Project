@@ -1,4 +1,4 @@
-from add_new_car_api import validate_data, Car
+from helpers import validate_add_car_data, Car
 
 
 car1 = Car(
@@ -79,8 +79,8 @@ car5 = Car(
 
 
 def test_validate_data():
-    assert validate_data(car1) == True
-    assert validate_data(car2) == False
-    assert validate_data(car3) == False
-    assert validate_data(car4) == False
-    assert validate_data(car4) == False
+    assert validate_add_car_data(car1) == True
+    assert validate_add_car_data(car2) == False
+    assert validate_add_car_data(car3) == False
+    assert validate_add_car_data(car4) == False
+    assert validate_add_car_data(car4) == False

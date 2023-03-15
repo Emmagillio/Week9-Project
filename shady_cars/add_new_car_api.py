@@ -36,7 +36,7 @@ class Car(BaseModel):
 @app.post("/add_car")
 def api_add_car(car: Car):
 
-    if not validate_data(car):
+    if not validate_add_car_data(car):
         return {"message": "invalid data"}
     # generate sale price from bought price
     for_sale_price = for_sale_price(car.bought_price)
@@ -86,7 +86,7 @@ def for_sale_price(bought_price):
         return int(bought_price * 1.5)
 
 
-def validate_data(car):
+def validate_add_car_data(car):
     valid = [
         car.make != "",
         car.model != "",

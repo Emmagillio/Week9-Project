@@ -16,7 +16,13 @@ app.add_middleware(
 
 
 @app.get("/cars")
-def search(search: str = ""):
+def search(
+    licence_number: str = "",
+    make: str = "",
+    colour: str = "",
+    lower_price: int = -1,
+    upper_price: int = 9999999,
+):
     # Connect to database
     con = pymysql.connect(
         host="localhost", user="root", password="password", database="dealer"
@@ -24,10 +30,9 @@ def search(search: str = ""):
     cur = con.cursor()
 
     # Check for search query, create query to SQL database
-    if search == "":
-        query = "select id, make, model, colour, year, location, licence_number, for_sale_price, image_url from cars order by for_sale_price"
-    else:
-        query = f"select id, make, model, colour, year, location, licence_number, for_sale_price, image_url from cars where licence_number like '%{search}%' order by for_sale_price"
+    query = f"select id, make, model, colour, year, location, licence_number, for_sale_price, image_url from \
+            cars where licence_number like '%{licence_number}%' and make like '%{make}%' and colour like '%{colour}%' \
+            and for_sale_price > {lower_price} and for_sale_price < {upper_price} order by for_sale_price"
 
     # Execute query and fetch results
     cur.execute(query)
@@ -54,7 +59,7 @@ def search(search: str = ""):
                 "Image": car[8],
             }
         }
-        cars.append(car_result)
+        cars.update(car_result)
 
     # Check for any returned results and return
     if cars:

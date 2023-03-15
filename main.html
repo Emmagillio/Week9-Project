@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Car Site</h1>
+    <div id="car_form">
+        <form method="get" action="">
+            <label for="make">license plate:</label>
+            <input type="text" id="year" name="model"><br><br>
+
+            <label for="make">make:</label>
+            <input type="text" id="make" name="model"><br><br>
+
+            <label for="model">model:</label>
+            <input type="text" id="model" name="model"><br><br>
+
+            <label for="colour">colour:</label>
+            <input type="text" id="colour" name="model"><br><br>
+
+            <label for="price_range">Price range</label><br><br>
+            <input type="text" id="price_range" name="model">
+
+
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const license = document.getElementbyId('#license').value;
+            const make = document.getElementbyId('#make').value;
+            const model = document.querySelector('#model').value;
+            const colour = document.querySelector('#colour').value;
+            const priceRange = document.querySelector('#priceRange').value;
+
+            const url = ''
+
+            const response = await fetch()
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+            } catch (error) {
+                console.log(error)
+            }
+
+        })
+    </script>
+</body>
+
+</html>
